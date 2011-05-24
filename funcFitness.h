@@ -2,6 +2,7 @@
 #define FUNC_FITNESS_H
 
 #include <vector>
+#include <algorithm>
 
 enum ProbType
 {
@@ -38,7 +39,7 @@ private:
     VecDev dev;
 public:
     FuncFitness(const VecProb &aProb, const VecDev &aDev);
-    double operator ()(const T &aInd);
+    double operator ()(T &aInd);
 };
 
 
@@ -51,7 +52,7 @@ FuncFitness<T>::FuncFitness(const VecProb &aProb, const VecDev &aDev):
 }
 
 template<typename T>
-double FuncFitness<T>::operator ()(const T &aInd)
+double FuncFitness<T>::operator ()(T &aInd)
 {
     std::vector<double> devTime(dev.size());
     for (unsigned int i = 0; i < aInd.size(); ++i)
