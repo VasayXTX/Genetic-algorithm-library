@@ -1,3 +1,6 @@
+#ifndef FUNC_FITNESS_H
+#define FUNC_FITNESS_H
+
 #include <vector>
 
 enum ProbType
@@ -55,3 +58,5 @@ double FuncFitness<T>::operator ()(const T &aInd)
         devTime[aInd[i]] += dev[aInd[i]].probFactor[prob[i].type-1] * prob[i].apTime;
     return *std::max_element(devTime.begin(), devTime.end());
 }
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef INDIVIDUAL_H
+#define INDIVIDUAL_H
+
 #include <vector>
 
 /*************************** Individual ***************************/
@@ -16,3 +19,5 @@ public:
     unsigned int codeSize() const;
     unsigned int operator [](unsigned int aIndex);
 };
+
+#endif
