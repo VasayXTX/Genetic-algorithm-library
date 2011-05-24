@@ -1,7 +1,14 @@
 #include "individual.h"
 
+Individual::Individual(unsigned int aSize, unsigned int aCodeSize):
+    cSize(aCodeSize)
+{
+    ind.resize(aSize);
+}
+
 Individual::Individual(const Individual &aInd):
-    ind(aInd.ind)
+    ind(aInd.ind),
+    cSize(aInd.cSize)
 {
     //empty
 }
@@ -19,4 +26,9 @@ void Individual::resize(unsigned int aSize)
 unsigned int Individual::size() const
 {
     return ind.size();
+}
+
+unsigned int Individual::codeSize() const
+{
+    return cSize;
 }
