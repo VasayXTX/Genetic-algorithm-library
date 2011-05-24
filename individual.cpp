@@ -48,3 +48,10 @@ unsigned int Individual::codeSize() const
 {
     return cSize;
 }
+
+void Individual::swap(unsigned int aIndex1, unsigned int aIndex2)
+{
+    unsigned int tmp = ind[aIndex1];
+    ind[aIndex1] = ind[aIndex2];
+    ind[aIndex2] = tmp;
+}

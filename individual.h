@@ -19,6 +19,9 @@ public:
     void setCodeSize(unsigned int aCodeSize);
     unsigned int size() const;
     unsigned int codeSize() const;
+
+    void swap(unsigned int aIndex1, unsigned int aIndex2);
+
     unsigned int &operator [](unsigned int aIndex);
     Individual &operator =(const Individual &aInd);
 };
