@@ -169,4 +169,55 @@ typename Population<T, F>::Elem *Population<T, F>::getByIndex(unsigned int aInde
     return popul[aIndex];
 }
 
+/*****************************************************************/
+/*************************** Selection ***************************/
+/*****************************************************************/
+
+template<typename T, typename F>
+class Selection
+{
+public:
+    virtual void Select(Population<T, F> &aParentPool, Population<T, F> &aPopul, unsigned int aMixIterCount) = 0;
+};
+
+template<typename T, typename F>
+class SelTournament: public Selection<T, F>
+{
+private:
+    unsigned int grpSize;
+public:
+    SelTournament(unsigned int aGrpSize);
+    void Select(Population<T, F> &aParentPool, Population<T, F> &aPopul, unsigned int aMixIterCount);
+};
+
+template<typename T, typename F>
+SelTournament<T, F>::SelTournament(unsigned int aGrpSize):
+    grpSize(aGrpSize)
+{
+    //empty
+}
+
+template<typename T, typename F>
+void SelTournament<T, F>::Select(Population<T, F> &aParentPool, Population<T, F> &aPopul, unsigned int aMixIterCount)
+{
+    aParentPool.clear();
+    aPopul.mix(aMixIterCount);
+    unsigned int counter = 0;   //Counter for group
+    unsigned int iParP = 0;     //Index for parent population
+    unsigned int iP = 0;        //Index for population
+    Population<T, F>::Elem *el = aPopul.getByIndex(iP++);
+    while (1)
+    {
+        if (counter == grpSize)
+        {
+            aParentPool.insert(iParP++, *el);
+            counter = 0;
+        }
+        if (iP >= aPopul.getPopulSize()) break;
+        Population<T, F>::Elem *tmpEl = aPopul.getByIndex(iP++);
+        if (el->first > tmpEl->first) el = tmpEl;
+        ++counter;
+    }
+}
+
 #endif
