@@ -20,6 +20,7 @@ public:
     unsigned int size() const;
     unsigned int codeSize() const;
     unsigned int &operator [](unsigned int aIndex);
+    Individual &operator =(const Individual &aInd);
 };
 
 #endif

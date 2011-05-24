@@ -23,6 +23,12 @@ unsigned int &Individual::operator [](unsigned int aIndex)
     return ind[aIndex];
 }
 
+Individual &Individual::operator =(const Individual &aInd)
+{
+    ind = aInd.ind;
+    return *this;
+}
+
 void Individual::setSize(unsigned int aSize)
 {
     ind.resize(aSize);
